@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, incial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        if(!empty($_POST[""])){
+            $userName = $_POST["userName"];
+            $userEmail = $_POST["userEmail"];
+            $userMessage = $_POST["userMessage"];
+            $toEmail = $_POST["manuelmanteiga06@gmail.com"];
+
+            $mailHeaders = "Name: " . $userName . "\r\n Email: " . $userEmail . "\r\n Mensagem: " . $userMessage . "\r\n";
+            
+            if(mail($toEmail, $userName, $mailHeaders)){
+                $message = "Mensagem Envida com Sucesso!";
+            }
+
+        }
+        
+        ?>
+
+       <div class="form-container">
+           <form method="post" name="emailContact">
+               <div class="input-row">
+                   <label>Name<em>*</em></label>
+                   <input type="text" name="userName" required>
+               </div>
+               <div class="input-row">
+                <label>Email<em>*</em></label>
+                <input type="text" name="userEmail" required>
+            </div>
+            <div class="input-row">
+                <label>Mensagem<em>*</em></label>
+                <textarea name="userMessage" required></textarea>
+            </div>
+            <div class="input-row">
+                <input type="submit" name="send" value="Enviar">
+                <?php if(!empty($message)){?>
+            </div>
+            <div class="success">
+                <strong>Sucesso</strong>
+                <strong><?php echo $message;   ?></strong>
+            </div>
+                 <?php  }?>   
+           </form>
+       </div>
+    </body>
+    
+</html>
+
+
+
+<!--antonio.manteiga@equimif.es-->
